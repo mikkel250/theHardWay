@@ -8,17 +8,7 @@ class Scene
 end
 
 
-class Engine
 
-	def initialize(scene_map)
-
-	end
-
-
-	def play(current_scene)
-
-	end
-end
 
 
 class Death < Scene
@@ -41,6 +31,8 @@ end
 
 
 class CentralCorridor < Scene
+	@exits = ["Bridge", "Armory", "Escape Pod"]
+	@gothan = true
 
 	def enter()
 		puts ""
@@ -48,8 +40,8 @@ class CentralCorridor < Scene
 
 		action = $stdin.gets.chomp.strip.downcase
 
-		if action == ###
-			puts ""
+		if action.include? @exits && @gothan == true
+			puts "There is a Gothan blocking your way! " + Death.enter
 
 		elsif action == ###
 
@@ -59,6 +51,7 @@ class CentralCorridor < Scene
 			puts "I don't understand. Try something else."
 			return 'central_corridor'
 	end
+
 end
 
 
@@ -70,7 +63,7 @@ class LaserWeaponArmory < Scene
 end
 
 
-class ExcapePod < Scene
+class EscapePod < Scene
 
 	def enter()
 
@@ -81,7 +74,12 @@ end
 class Map
 	@@scenes = {
 		'central_corridor' => CentralCorridor.new(),
+		'bridge' => Bridge.new(),
+		'laser_weapon_armory' => LaserWeaponArmory.new(),
+		'escape_pod' => EscapePod.new()
+		'death' => Death.new()
 	}
+
 	def initialize(start_scene)
 		@start_scene = start_scene
 	end
@@ -97,6 +95,32 @@ class Map
 	end
 end
 
+
+class Engine
+	# What do we want play to do?
+	# 1. show the current scene (this is essentially a_game.play)
+	# 2. take input from the user
+	# 3. Show result of input or move to new scene depending on situation
+
+	# Questions 
+	# How do I pass the current scene to the engine?
+
+	# remember, when you pass variables to you Class.new method, they will be available to the ::initialize method.
+	# If you want to be able to access aspects of the class, you need to write methods to do so.
+	# The viking example is:
+	# def health
+	# 	@health
+	# end
+
+	def initialize(scene_map)
+		@scene_map = scene_map
+	end
+
+
+	def play(current_scene)
+		puts current_scene
+	end
+end
 
 a_map = Map.new('central_corridor')
 a.game = Engine.new(a_map)
