@@ -1,0 +1,20 @@
+true 
+false
+false
+true
+true
+true
+false
+true
+false
+false
+true
+f
+t
+f
+t  # wrong
+f
+t
+t
+f
+f
