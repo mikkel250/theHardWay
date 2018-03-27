@@ -47,6 +47,7 @@ class CentralCorridor < Scene
 
 		elsif action == ###
 
+
 		else 
 			puts "I don't understand. Try something else."
 			return 'central_corridor'
@@ -129,3 +130,12 @@ a_game.play()
 # So how would the engine work?
 # You would be running Scene.enter in the engine when a_game.play is called?
 # this might actually be best done on paper...
+
+# So, I figured it out. 
+# to move from scene to scene you will just be calling 'enter'. E.g. from central you would
+# be calling EscapePod.enter
+# or perhaps it would be a_game.play(EscapePod)
+# but you get the idea.
+
+# stuck? check out https://staceylearnscode.wordpress.com/2015/09/29/learn-ruby-the-hard-way-exercise-43-gothons-from-planet-percal-25/
+
